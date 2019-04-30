@@ -18,5 +18,11 @@ npm start'''
 npm test'''
       }
     }
+    stage('Stop env') {
+      steps {
+        sh '''cd ../frontend
+npm run docker-stop'''
+      }
+    }
   }
 }
