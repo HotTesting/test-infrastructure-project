@@ -14,6 +14,7 @@ pipeline {
     stage('Build Frontend Container') {
       steps {
         sh '''
+        cd frontend
         npm run docker-build'''
       }
     }
@@ -26,13 +27,13 @@ pipeline {
     }
     stage('E2E tests') {
       steps {
-        sh '''cd ../e2e
+        sh '''cd e2e
         npm test'''
       }
     }
     stage('Stop env') {
       steps {
-        sh '''cd ../frontend
+        sh '''cd frontend
         npm run docker-stop'''
       }
     }
