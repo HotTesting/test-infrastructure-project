@@ -11,10 +11,17 @@ pipeline {
         npm install'''
       }
     }
+    stage('Build Frontend Container') {
+      steps {
+        sh '''
+        npm run docker-build'''
+      }
+    }
+    
     stage('Start Frontend') {
       steps {
         sh '''cd frontend
-        npm start'''
+        npm run docker-start'''
       }
     }
     stage('E2E tests') {
