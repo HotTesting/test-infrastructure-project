@@ -22,7 +22,7 @@ pipeline {
     stage('Start Frontend') {
       steps {
         sh '''cd frontend
-        npm run docker-start'''
+        npm run docker-run'''
       }
     }
     stage('E2E tests') {
