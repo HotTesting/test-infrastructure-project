@@ -5,37 +5,35 @@ pipeline {
     }
   }
   stages {
-    stage('Build Frontend') {
+    stage('Build Frontend container') {
       steps {
         sh '''cd frontend
         npm install'''
-      }
-    }
-    stage('Build Frontend Container') {
-      steps {
         sh '''
-        cd frontend
+        npm run docker-stop'''
+        sh '''
         npm run docker-build'''
       }
     }
-    
-    stage('Start Frontend') {
+    stage('Start Frontend container') {
       steps {
         sh '''cd frontend
         npm run docker-run'''
       }
     }
-    stage('E2E tests') {
+    stage('E2E tests - run') {
       steps {
         sh '''cd e2e
+        npm install
         npm test'''
       }
     }
-    stage('Stop env') {
-      steps {
-        sh '''cd frontend
+  }
+  post {
+    always {
+        sh '''
+        cd frontend
         npm run docker-stop'''
-      }
     }
   }
 }
