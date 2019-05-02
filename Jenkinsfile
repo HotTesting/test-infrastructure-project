@@ -17,7 +17,9 @@ pipeline {
     }
     stage('Start Frontend container') {
       steps {
-        sh 'npm run docker-run'
+          dir("frontend") {
+            sh 'npm run docker-run'
+        }
       }
     }
     stage('E2E tests - run') {
