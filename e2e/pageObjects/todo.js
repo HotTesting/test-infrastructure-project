@@ -4,7 +4,7 @@ class TODO {
     }
 
     open() {
-        browser.url("/examples/vue/");
+        browser.url("/");
     }
 
     /**
