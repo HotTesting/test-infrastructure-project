@@ -24,7 +24,7 @@ pipeline {
     }
     stage('E2E tests - run') {
       steps {
-        dir("frontend") {
+        dir("e2e") {
             sh 'pwd'
             sh 'npm install'
             sh 'npm test'
