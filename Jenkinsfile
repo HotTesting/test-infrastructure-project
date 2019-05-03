@@ -17,17 +17,22 @@ pipeline {
         npm start'''
       }
     }
+    stage('Start Chrome') {
+      steps {        
+        sh "docker run --rm -d -p 4844:4444 --name temporary-chrome --shm-size=2g selenium/standalone-chrome:3.141.59-neon"
+      }
+    }
     stage('E2E tests') {
       steps {
         sh '''cd ../e2e
         npm test'''
       }
     }
-    stage('Stop env') {
-      steps {
-        sh '''cd ../frontend
-        npm run docker-stop'''
-      }
-    }
+  }
+  post {
+    always {
+      sh '''docker rm -vf todo-app'''
+      sh '''docker rm -vf temporary-chrome'''
+    }   
   }
 }

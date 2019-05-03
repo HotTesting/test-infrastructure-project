@@ -3,8 +3,7 @@
     "scripts": {
         "start": "http-server",
         "docker-build": "docker build --no-cache -t example:todo-app ./",
-        "docker-run": "docker run --name todo-app --rm -d -p 8080:80 example:todo-app",
-        "docker-stop": "docker stop todo-app"
+        "docker-run": "docker run --name todo-app --rm -d -p 8080:80 example:todo-app"
     },
     "dependencies": {
         "director": "^1.2.0",
