@@ -5,16 +5,21 @@ pipeline {
     }
   }
   stages {
-    stage('Build Frontend') {
+    stage('Build Frontend container') {
       steps {
-        sh '''cd frontend
-        npm install'''
+        dir("frontend") {
+            sh 'pwd'
+            sh 'npm install'
+            sh 'npm run docker-stop'
+            sh 'npm run docker-build'
+        }
       }
     }
-    stage('Start Frontend') {
+    stage('Start Frontend container') {
       steps {
-        sh '''cd frontend
-        npm start'''
+          dir("frontend") {
+            sh 'npm run docker-run'
+        }
       }
     }
     stage('Start Chrome') {
@@ -22,10 +27,13 @@ pipeline {
         sh "docker run --rm -d -p 4844:4444 --name temporary-chrome --shm-size=2g selenium/standalone-chrome:3.141.59-neon"
       }
     }
-    stage('E2E tests') {
+    stage('Start E2E tests') {
       steps {
-        sh '''cd ../e2e
-        npm test'''
+        dir("e2e") {
+            sh 'pwd'
+            sh 'npm install'
+            sh 'npm test'
+        }
       }
     }
   }

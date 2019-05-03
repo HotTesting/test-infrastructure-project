@@ -1,7 +1,8 @@
 exports.config = {
     specs: ["./tests/*.js"],
     sync: true,
-    services: ["selenium-standalone"],
+    // services: ["selenium-standalone"],
+    port: 4844,
     capabilities: [
         {
             browserName: "chrome"
