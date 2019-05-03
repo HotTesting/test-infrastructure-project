@@ -10,7 +10,6 @@ pipeline {
         dir("frontend") {
             sh 'pwd'
             sh 'npm install'
-            sh 'npm run docker-stop'
             sh 'npm run docker-build'
         }
       }
@@ -39,8 +38,8 @@ pipeline {
   }
   post {
     always {
-      sh '''docker rm -vf todo-app'''
-      sh '''docker rm -vf temporary-chrome'''
+      sh '''docker rm -vf todo-app || true'''
+      sh '''docker rm -vf temporary-chrome || true'''
     }   
   }
 }
