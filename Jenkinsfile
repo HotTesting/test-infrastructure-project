@@ -28,7 +28,7 @@ pipeline {
       steps {
         dir("e2e") {
             sh 'docker build --no-cache -t example:todo-app-e2e ./'
-            sh 'docker run --name todo-app-e2e --rm -d --net=e2e-network example:todo-app-e2e'
+            sh 'docker run --name todo-app-e2e --rm --net=e2e-network example:todo-app-e2e'
         }
       }
     }
