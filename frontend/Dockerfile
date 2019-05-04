@@ -1,5 +1,2 @@
-FROM node:10.15.3-jessie
-COPY ./ /todoapp
-WORKDIR /e2e
-RUN npm install 
-ENTRYPOINT npm start
+FROM nginx:alpine
+COPY ./ /usr/share/nginx/html/
