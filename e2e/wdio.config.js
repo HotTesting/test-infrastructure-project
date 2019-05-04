@@ -3,7 +3,11 @@ exports.config = {
     sync: true,
     // services: ["selenium-standalone"],
     // port: 4844,
+    //port: 4444, 
     hostname: "temporary-chrome",
+    //path: '/wd/hub',
+    maxInstances: 1,
+    maxInstancesPerCapability: 1, 
     capabilities: [
         {
             browserName: "chrome",
