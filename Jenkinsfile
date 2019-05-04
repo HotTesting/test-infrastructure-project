@@ -2,29 +2,27 @@ pipeline {
   agent {
     docker {
       image 'node:10.15.3-jessie'
-      args '--net=host'
+      args '--net=e2e-network'
     }
   }
   stages {
     stage('Build Frontend container') {
       steps {
         dir("frontend") {
-            sh 'pwd'
-            sh 'npm install'
-            sh 'npm run docker-build'
+            sh 'docker build --no-cache -t example:todo-app ./'
         }
       }
     }
     stage('Start Frontend container') {
       steps {
           dir("frontend") {
-            sh 'npm run docker-run'
+            sh 'docker run --name todo-app -p 8080:80 --rm -d --net=e2e-network example:todo-app'
         }
       }
     }
     stage('Start Chrome') {
       steps {        
-        sh "docker run --rm -d -p 4844:4444 --net=host --name temporary-chrome --shm-size=2g selenium/standalone-chrome:3.141.59-neon"
+        sh "docker run --name temporary-chrome -p 4844:4444 --rm -d --net=e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59-neon"
       }
     }
     stage('Start E2E tests') {

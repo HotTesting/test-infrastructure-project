@@ -2,6 +2,7 @@
     "private": true,
     "scripts": {
         "start": "http-server",
+        "background-start": "http-server . > http.log 2>&1 &",
         "docker-build": "docker build --no-cache -t example:todo-app ./",
         "docker-run": "docker run --name todo-app --rm -d -p 8080:80 example:todo-app"
     },

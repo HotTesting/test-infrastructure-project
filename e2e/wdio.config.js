@@ -3,13 +3,14 @@ exports.config = {
     sync: true,
     // services: ["selenium-standalone"],
     port: 4844,
+    hostname: "temporary-chrome",
     capabilities: [
         {
             browserName: "chrome"
         }
     ],
     reporters: ["spec"],
-    baseUrl: "http://localhost:30030",
+    baseUrl: "http://todo-app:8080",
     framework: "mocha",
     logLevel: "silent",
     mochaOpts: {
