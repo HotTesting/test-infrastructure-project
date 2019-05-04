@@ -15,7 +15,7 @@ pipeline {
     stage('Start Frontend container') {
       steps {
           dir("frontend") {
-            sh 'docker run --name todo-app -p 8080:80 --rm -d --network e2e-network example:todo-app'
+            sh 'docker run --name todo-app --rm -d --network e2e-network example:todo-app'
         }
       }
     }
