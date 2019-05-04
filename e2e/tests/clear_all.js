@@ -5,7 +5,7 @@ should();
 
 describe("Clear all", function() {
     it("should remove all completed items", function() {
-        browser.url("/examples/vue/");
+        todo.open();
         todo.create("test1");
         todo.create("test2");
         todo.create("test2");
@@ -17,7 +17,7 @@ describe("Clear all", function() {
     });
 
     it("should not remove active item", function() {
-        browser.url("/examples/vue/");
+        todo.open();
         todo.create("test1");
         todo.create("test2");
         todo.create("test3");

@@ -5,6 +5,7 @@ class TODO {
 
     open() {
         browser.url("/");
+        browser.pause(5000)
         let source = browser.getPageSource()
         console.log(source)
     }
