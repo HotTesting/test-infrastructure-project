@@ -15,20 +15,20 @@ pipeline {
     stage('Start Frontend container') {
       steps {
           dir("frontend") {
-            sh 'docker run --name todo-app -p 8080:80 --rm -d --net=e2e-network example:todo-app'
+            sh 'docker run --name todo-app -p 8080:80 --rm -d --network e2e-network example:todo-app'
         }
       }
     }
     stage('Start Chrome') {
       steps {        
-        sh "docker run --name temporary-chrome -p 4844:4444 --rm -d --net=e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59-neon"
+        sh "docker run --name temporary-chrome -p 4844:4444 --rm -d --network e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59-neon"
       }
     }
     stage('Start E2E tests') {
       steps {
         dir("e2e") {
             sh 'docker build --no-cache -t example:todo-app-e2e ./'
-            sh 'docker run --name todo-app-e2e --rm --net=e2e-network example:todo-app-e2e'
+            sh 'docker run --name todo-app-e2e --rm --network e2e-network example:todo-app-e2e'
         }
       }
     }
