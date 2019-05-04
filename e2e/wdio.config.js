@@ -6,7 +6,8 @@ exports.config = {
     hostname: "temporary-chrome",
     capabilities: [
         {
-            browserName: "chrome"
+            browserName: "chrome",
+            maxInstances: 1
         }
     ],
     reporters: ["spec"],
