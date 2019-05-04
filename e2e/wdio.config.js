@@ -2,7 +2,7 @@ exports.config = {
     specs: ["./tests/*.js"],
     sync: true,
     // services: ["selenium-standalone"],
-    port: 4844,
+    // port: 4844,
     hostname: "temporary-chrome",
     capabilities: [
         {

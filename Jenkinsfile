@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Start Chrome') {
       steps {        
-        sh "docker run --name temporary-chrome -p 4844:4444 --rm -d --network e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59-neon"
+        sh "docker run --name temporary-chrome --rm -d --network e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59-neon"
       }
     }
     stage('Start E2E tests') {
