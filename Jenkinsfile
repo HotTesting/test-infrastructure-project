@@ -35,8 +35,6 @@ pipeline {
   }
   post {
     always {
-      sh 'docker stop todo-app || true'
-      sh 'docker rm -vf todo-app || true'
       sh 'docker rmi todo-app:edge || true'
       sh 'docker rmi todo-app-tests:edge || true'
     }    
