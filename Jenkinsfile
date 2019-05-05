@@ -13,14 +13,13 @@ pipeline {
       steps {
           dir("frontend") {
             sh 'docker build --no-cache -t todo-app:edge .'
-            sh 'docker run --name todo-app --rm -d --privileged --network e2e-network todo-app:edge'
+            sh 'docker run --name todo-app -d --privileged --network e2e-network todo-app:edge'
         }
       }
     }
     stage('Start Chrome') {
       steps {        
         sh "docker run --name temporary-chrome -d --privileged --network e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59"
-        sh "docker inspect temporary-chrome | grep Pid"
         // Giving time to start chrome
         sh 'sleep 30'
       }
@@ -40,8 +39,6 @@ pipeline {
       sh 'docker rm -vf todo-app || true'
       sh 'docker rmi todo-app:edge || true'
       sh 'docker rmi todo-app-tests:edge || true'
-      sh 'docker stop temporary-chrome || true'
-      sh 'docker rm -vf temporary-chrome || true'
     }    
   }
 }
