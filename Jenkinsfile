@@ -8,14 +8,14 @@ pipeline {
     stage('Build Frontend container') {
       steps {
         dir("frontend") {
-            sh 'docker build --no-cache -t example:todo-app ./'
+            sh 'docker build --no-cache -t todo-app ./'
         }
       }
     }
     stage('Start Frontend container') {
       steps {
           dir("frontend") {
-            sh 'docker run --name todo-app --rm -d --network e2e-network example:todo-app'
+            sh 'docker run --name todo-app --rm -d --network e2e-network todo-app'
         }
       }
     }
@@ -28,8 +28,8 @@ pipeline {
     stage('Start E2E tests') {
       steps {
         dir("e2e") {
-            sh 'docker build --no-cache -t example:todo-app-e2e ./'
-            sh 'docker run --name todo-app-e2e --rm --network e2e-network example:todo-app-e2e'
+            sh 'docker build --no-cache -t todo-app-e2e ./'
+            sh 'docker run --name todo-app-e2e --rm --network e2e-network todo-app-e2e'
         }
       }
     }
