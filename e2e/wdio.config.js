@@ -23,15 +23,18 @@ exports.config = {
         timeout: 120000 // in ms
     },
 
+    before: function () {
+        browser.setWindowSize(1280, 1024)
+    },
     /**
      * Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) ends.
      * @param {Object} test test details
      */
     afterTest: function(test) {
         // faster than reload browser
-        // browser.execute('window.localStorage.clear(); window.sessionStorage.clear()')
-        // browser.refresh()
+        browser.execute('window.localStorage.clear(); window.sessionStorage.clear()')
+        browser.refresh()
 
-        browser.reloadSession();
+        // browser.reloadSession();
     }
 };
