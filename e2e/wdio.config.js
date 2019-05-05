@@ -15,7 +15,7 @@ exports.config = {
         }
     ],
     reporters: ["spec"],
-    baseUrl: "http://todo-app",
+    baseUrl: "http://todo-app:8080",
     framework: "mocha",
     logLevel: "silent",
     mochaOpts: {
