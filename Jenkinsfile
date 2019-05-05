@@ -8,6 +8,7 @@ pipeline {
     stage('Build Frontend container') {
       steps {
         dir("frontend") {
+            sh 'npm install'
             sh 'docker build --no-cache -t todo-app ./'
         }
       }
