@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:10.15.3-jessie'
-      args '--rm'
-    }
-  }
+  agent { label 'MASTER' }
   stages {
     stage('Unit tests') {
       steps {
@@ -23,7 +18,7 @@ pipeline {
       steps {        
         sh "docker run --name temporary-chrome -d --network e2e-network --shm-size=2g selenium/standalone-chrome-debug"
         // Giving time to start chrome
-        sh 'sleep 5'
+        sh 'sleep 15'
       }
     }
     stage('E2E tests') {
