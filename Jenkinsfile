@@ -20,6 +20,7 @@ pipeline {
     stage('Start Chrome') {
       steps {        
         sh "docker run --name temporary-chrome -d --privileged --network e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59"
+        sh "docker inspect temporary-chrome | grep Pid"
         // Giving time to start chrome
         sh 'sleep 30'
       }
