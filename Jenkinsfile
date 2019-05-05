@@ -9,7 +9,7 @@ pipeline {
     stage('Start Frontend') {
       steps {
           dir("frontend") {
-            sh 'docker build --no-cache -t todo-app:edge ./'
+            sh 'docker build --no-cache -t todo-app:edge .'
             sh 'docker run --name todo-app --rm -d --privileged --network e2e-network todo-app:edge'
         }
       }
@@ -24,7 +24,7 @@ pipeline {
     stage('E2E tests') {
       steps {
         dir("e2e") {
-            sh 'docker build --no-cache -t todo-app-tests:edge ./'
+            sh 'docker build --no-cache -t todo-app-tests:edge .'
             sh 'docker run --name todo-app-e2e --rm --network e2e-network todo-app-tests:edge'
         }
       }
