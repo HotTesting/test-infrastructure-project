@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Start Chrome') {
       steps {        
-        sh "docker run --name temporary-chrome -d --network e2e-network --shm-size=2g selenium/standalone-chrome-debug"
+        sh "docker run --name temporary-chrome --rm -d --network e2e-network --shm-size=2g selenium/standalone-chrome-debug"
         // Giving time to start chrome
         sh 'sleep 15'
       }
@@ -33,7 +33,11 @@ pipeline {
   post {
     always {
       sh 'docker stop todo-app || true'
+      sh 'docker rm -vf todo-app || true'
+      sh 'docker rmi todo-app:edge || true'
+      sh 'docker rmi todo-app-tests:edge || true'
       sh 'docker stop temporary-chrome || true'
-    }   
+      sh 'docker rm -vf temporary-chrome || true'
+    }    
   }
 }
