@@ -36,9 +36,8 @@ pipeline {
   }
   post {
     always {
-      sh 'docker rm -vf todo-app || true'
-      sh 'docker rm -vf temporary-chrome || true'
-      sh 'docker rmi todo-app:edge || true'
+      sh 'docker stop todo-app || true'
+      sh 'docker stop temporary-chrome || true'
     }   
   }
 }
