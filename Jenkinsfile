@@ -17,14 +17,14 @@ pipeline {
     stage('Start Chrome') {
       steps {        
         sh "docker run --name temporary-chrome --rm -d --network e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59"
+        // Giving time to start chrome
+        sh 'sleep 30'
       }
     }
     stage('E2E tests') {
       steps {
         dir("e2e") {
             sh 'docker build --no-cache -t todo-app-tests:edge ./'
-            // Giving time to start chrome
-            sh 'sleep 15'
             sh 'docker run --name todo-app-e2e --rm --network e2e-network todo-app-tests:edge'
         }
       }
