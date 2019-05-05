@@ -10,13 +10,13 @@ pipeline {
       steps {
           dir("frontend") {
             sh 'docker build --no-cache -t todo-app:edge ./'
-            sh 'docker run --name todo-app --rm -d --network e2e-network todo-app:edge'
+            sh 'docker run --name todo-app --rm -d --privileged --network e2e-network todo-app:edge'
         }
       }
     }
     stage('Start Chrome') {
       steps {        
-        sh "docker run --name temporary-chrome --rm -d --network e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59"
+        sh "docker run --name temporary-chrome --rm -d --privileged --network e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59"
         // Giving time to start chrome
         sh 'sleep 30'
       }
