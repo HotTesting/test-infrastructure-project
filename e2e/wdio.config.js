@@ -5,7 +5,7 @@ exports.config = {
     // port: 4844,
     //port: 4444, 
     hostname: "temporary-chrome",
-    path: '/',
+    //path: '/',
     maxInstances: 1,
     maxInstancesPerCapability: 1, 
     capabilities: [
