@@ -19,7 +19,8 @@ exports.config = {
                     "--no-sandbox",
                     "--headless",
                     "--disable-dev-shm-usage",
-                    "--disable-gpu"
+                    "--disable-gpu",
+                    "--remote-debugging-port=9222"
                 ],
                 binary: chromium.path
             },
