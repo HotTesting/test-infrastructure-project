@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Demonstration project",
   "scripts": {
-    "pretest": "CHROMEDRIVER_VERSION=75.0.3770.8 npm install chromedriver",
-    "test": "wdio ./wdio.config.js"
+    "pretest": "sudo CHROMEDRIVER_VERSION=75.0.3770.8 npm install chromedriver",
+    "test": "sudo wdio ./wdio.config.js"
   },
   "author": "Oleksandr Khotemskyi",
   "license": "ISC",
