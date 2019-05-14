@@ -20,7 +20,7 @@ exports.config = {
         {
             browserName: "chrome",
             "goog:chromeOptions": {
-                args: ["--headless"],
+                args: ["--no-sandbox --headless"],
                 binary: chromium.path
             },
             maxInstances: 1
