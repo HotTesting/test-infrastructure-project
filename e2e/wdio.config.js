@@ -1,6 +1,5 @@
 const chromium = require("chromium");
-console.log('CHROME BINARY: ', chromium.path)
-
+console.log("CHROME BINARY: ", chromium.path);
 
 // Making BaseURL available everywhere
 global.SUT_URL = process.env.SUT_URL || "http://todomvc.com/examples/vue/";
@@ -16,16 +15,7 @@ exports.config = {
         {
             browserName: "chrome",
             "goog:chromeOptions": {
-                args: [
-                    "--no-sandbox",
-                    "window-size=1280,1024",
-                    "--disable-setuid-sandbox",
-                    "--headless",
-                    "--disable-gpu",
-                    //"--whitelisted-ips",
-                    "--disable-extensions",
-                    //"--remote-debugging-port=9222"
-                ],
+                args: ["--no-sandbox", "--headless"],
                 binary: chromium.path
             },
             maxInstances: 1
