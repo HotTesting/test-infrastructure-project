@@ -1,7 +1,7 @@
 {
-  "name": "ui_automation_course",
+  "name": "e2e-example",
   "version": "1.0.0",
-  "description": "Demonstration project UI automation",
+  "description": "Demonstration project",
   "scripts": {
     "test": "wdio ./wdio.config.js"
   },

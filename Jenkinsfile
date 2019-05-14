@@ -1,42 +1,42 @@
 pipeline {
   agent {
-    docker {
-      image 'node:10.15.3-jessie'
-    }
+    label 'MASTER'
   }
+
   stages {
-    stage('Build Frontend container') {
+    stage('Unit tests') {
       steps {
-        dir("frontend") {
-            sh 'pwd'
-            sh 'npm install'
-            sh 'npm run docker-stop'
-            sh 'npm run docker-build'
-        }
+        sh 'echo Unit Tests passed!'
       }
     }
-    stage('Start Frontend container') {
+    stage('Start Frontend') {
       steps {
           dir("frontend") {
-            sh 'npm run docker-run'
+            sh 'docker build --no-cache -t todo-app:edge .'
+            sh 'docker run --rm --name todo-app -d --privileged --network e2e-network todo-app:edge'
         }
       }
     }
-    stage('E2E tests - run') {
+    stage('Start Chrome') {
+      steps {        
+        sh "docker run --rm --name temporary-chrome -d --privileged --network e2e-network --shm-size=2g selenium/standalone-chrome:3.141.59"
+        // Giving time to start chrome
+        sh 'sleep 30'
+      }
+    }
+    stage('E2E tests') {
       steps {
         dir("e2e") {
-            sh 'pwd'
-            sh 'npm install'
-            sh 'npm test'
+            sh 'docker build --no-cache -t todo-app-tests:edge .'
+            sh 'docker run --name todo-app-e2e --rm --network e2e-network todo-app-tests:edge'
         }
       }
     }
   }
   post {
     always {
-        sh '''
-        cd frontend
-        npm run docker-stop'''
-    }
+      sh 'docker rmi todo-app:edge || true'
+      sh 'docker rmi todo-app-tests:edge || true'
+    }    
   }
 }
