@@ -38,7 +38,7 @@ exports.config = {
         timeout: 120000 // in ms
     },
     onPrepare: function() {
-        chromedriver.start();
+        return chromedriver.start();
     },
     before: function() {
         browser.setWindowSize(1280, 1024);
@@ -57,6 +57,6 @@ exports.config = {
         // browser.reloadSession();
     },
     onComplete: function() {
-        chromedriver.stop();
+        return chromedriver.stop();
     }
 };
