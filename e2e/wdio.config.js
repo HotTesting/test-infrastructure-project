@@ -20,6 +20,8 @@ exports.config = {
                     "--disable-setuid-sandbox",
                     "--headless",
                     "--disable-gpu",
+                    "--whitelisted-ips",
+                    "--disable-extensions",
                     "--remote-debugging-port=9222"
                 ],
                 binary: chromium.path
