@@ -10,17 +10,17 @@ exports.config = {
     //services: ["selenium-standalone"],
     port: 9515, // default for ChromeDriver
     path: "/",
-    // ...
-    // services: ["chromedriver"],
-    // options
-    //chromeDriverArgs: ['--port=9515', '--url-base=\'/\''], // default for ChromeDriver
-    //chromeDriverLogs: './',
     maxInstancesPerCapability: 1,
     capabilities: [
         {
             browserName: "chrome",
             "goog:chromeOptions": {
-                args: ["--no-sandbox", "--headless", "--disable-dev-shm-usage"],
+                args: [
+                    "--no-sandbox",
+                    "--headless",
+                    "--disable-dev-shm-usage",
+                    "--disable-gpu"
+                ],
                 binary: chromium.path
             },
             maxInstances: 1
