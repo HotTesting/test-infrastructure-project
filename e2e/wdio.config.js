@@ -17,10 +17,10 @@ exports.config = {
             "goog:chromeOptions": {
                 args: [
                     "--no-sandbox",
+                    "--disable-setuid-sandbox",
                     "--headless",
-                    "--disable-dev-shm-usage",
                     "--disable-gpu",
-                    "--remote-debugging-port=9520"
+                    "--remote-debugging-port=9222"
                 ],
                 binary: chromium.path
             },
