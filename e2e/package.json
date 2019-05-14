@@ -3,18 +3,22 @@
   "version": "1.0.0",
   "description": "Demonstration project",
   "scripts": {
+    "pretest": "CHROMEDRIVER_VERSION=75.0.3770.8 npm install chromedriver",
     "test": "wdio ./wdio.config.js"
   },
   "author": "Oleksandr Khotemskyi",
   "license": "ISC",
   "dependencies": {
     "@wdio/cli": "^5.7.13",
-    "@wdio/spec-reporter": "^5.7.13",
-    "@wdio/selenium-standalone-service": "^5.7.8",
-    "webdriverio": "^5.7.13",
     "@wdio/local-runner": "^5.7.13",
     "@wdio/mocha-framework": "^5.7.13",
+    "@wdio/selenium-standalone-service": "^5.7.8",
+    "@wdio/spec-reporter": "^5.7.13",
     "@wdio/sync": "^5.7.13",
-    "chai": "^4.2.0"
+    "chai": "^4.2.0",
+    "chromedriver": "^74.0.0",
+    "chromium": "2.1.0",
+    "wdio-chromedriver-service": "^5.0.0",
+    "webdriverio": "^5.7.13"
   }
 }
