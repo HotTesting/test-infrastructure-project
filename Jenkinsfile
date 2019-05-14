@@ -35,9 +35,9 @@ pipeline {
   }
   post {
     always {
-      sh 'docker rm -f todo-app:edge || true'
+      sh 'docker rm -f todo-app || true'
       sh 'docker rm -f temporary-chrome || true'
-      sh 'docker rm -f todo-app-e2e:edge || true'
+      sh 'docker rm -f todo-app-e2e || true'
     }    
   }
 }
