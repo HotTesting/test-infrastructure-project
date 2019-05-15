@@ -4,7 +4,7 @@ console.log("######", global.SUT_URL, "will be used");
 exports.config = {
     specs: ["./tests/*.js"],
     sync: true,
-    // hostname: "temporary-chrome",
+    hostname: "temporary-chrome",
     maxInstances: 1,
     maxInstancesPerCapability: 1,
     capabilities: [
