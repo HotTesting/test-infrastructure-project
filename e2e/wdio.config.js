@@ -14,7 +14,6 @@ exports.config = {
         }
     ],
     reporters: ["spec"],
-    baseUrl: ,
     framework: "mocha",
     logLevel: "silent",
     mochaOpts: {
