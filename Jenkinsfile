@@ -36,10 +36,9 @@ pipeline {
     stage('E2E tests') {
       steps {
         dir("e2e") {
-            
             sh 'docker rm -f todo-app-e2e || true'
             sh 'docker build --no-cache -t todo-app-tests:edge .'
-            sh 'docker run --name todo-app-e2e --rm --network e2e-network -e SUT_URL=${SUT_URL} todo-app-tests:edge '
+            sh 'docker run --name todo-app-e2e --rm --network e2e-network -e SUT_URL=${SUT_URL}  -v "$(pwd)/reports/:/e2e/reports" todo-app-tests:edge'
         }
       }
     }
