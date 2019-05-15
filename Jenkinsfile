@@ -38,6 +38,7 @@ pipeline {
         dir("e2e") {
             sh 'docker rm -f todo-app-e2e || true'
             sh 'docker build --no-cache -t todo-app-tests:edge .'
+            sh 'mkdir reports'
             sh 'docker run --name todo-app-e2e --rm --network e2e-network -e SUT_URL=${SUT_URL}  -v "$(pwd)/reports/:/e2e/reports" todo-app-tests:edge'
         }
       }
@@ -45,7 +46,7 @@ pipeline {
   }
   post {
     always {
-      junit 'e2e/reports/**/*.xml'
+      junit '**/e2e/reports/**/*.xml'
       sh 'docker rm -f todo-app || true'
       sh 'docker rm -f temporary-chrome || true'
       sh 'docker rm -f todo-app-e2e || true'
