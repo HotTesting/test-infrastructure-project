@@ -1,11 +1,10 @@
+global.SUT_URL = process.env.SUT_URL || "http://todomvc.com/examples/vue/";
+console.log('######', global.SUT_URL, 'will be used')
+
 exports.config = {
     specs: ["./tests/*.js"],
     sync: true,
-    // services: ["selenium-standalone"],
-    // port: 4844,
-    //port: 4444, 
     hostname: "temporary-chrome",
-    //path: '/',
     maxInstances: 1,
     maxInstancesPerCapability: 1, 
     capabilities: [
@@ -15,7 +14,7 @@ exports.config = {
         }
     ],
     reporters: ["spec"],
-    baseUrl: "http://todo-app:8080",
+    baseUrl: ,
     framework: "mocha",
     logLevel: "silent",
     mochaOpts: {

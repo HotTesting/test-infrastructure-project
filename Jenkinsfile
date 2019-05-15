@@ -2,18 +2,23 @@ pipeline {
   agent {
     label 'MASTER'
   }
-
+  environment {
+    APP_NAME = "todo-app"
+    APP_PORT = "8080"
+    SUT_URL = "http://${env.APP_NAME}:${APP_PORT}"
+  }
   stages {
     stage('Unit tests') {
       steps {
-        sh 'echo Unit Tests passed!'
+        sh 'echo #### Unit Tests passed! ####'
       }
     }
     stage('Start Frontend') {
       steps {
           dir("frontend") {
+            sh 'echo ${SUT_URL}'
             sh 'docker build --no-cache -t todo-app:edge .'
-            sh 'docker run --rm --name todo-app -d --privileged --network e2e-network todo-app:edge'
+            sh 'docker run --rm --name ${APP_NAME} -d --privileged --network e2e-network todo-app:edge'
         }
       }
     }
@@ -28,7 +33,7 @@ pipeline {
       steps {
         dir("e2e") {
             sh 'docker build --no-cache -t todo-app-tests:edge .'
-            sh 'docker run --name todo-app-e2e --rm --network e2e-network todo-app-tests:edge'
+            sh 'docker run --name todo-app-e2e --rm --network e2e-network -e SUT_URL=${SUT_URL} todo-app-tests:edge '
         }
       }
     }

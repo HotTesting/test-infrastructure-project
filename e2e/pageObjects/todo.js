@@ -4,7 +4,7 @@ class TODO {
     }
 
     open() {
-        browser.url("/");
+        browser.url(global.SUT_URL);
         browser.pause(1000)
         //let source = browser.getPageSource()
         //console.log(source)
