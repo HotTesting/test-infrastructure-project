@@ -1,3 +1,7 @@
+# test reports
+e2e/reports/
+e2e/allure-results/
+
 # Logs
 logs
 *.log

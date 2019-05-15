@@ -40,6 +40,7 @@ pipeline {
   }
   post {
     always {
+      junit 'e2e/reports/**/*.xml'
       sh 'docker rm -f todo-app || true'
       sh 'docker rm -f temporary-chrome || true'
       sh 'docker rm -f todo-app-e2e || true'
