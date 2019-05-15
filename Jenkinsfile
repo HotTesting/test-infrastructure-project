@@ -46,7 +46,9 @@ pipeline {
   }
   post {
     always {
-      junit '**/e2e/reports/**/*.xml'
+      sh 'cd "$(pwd)"/reports/; cp *.xml "$(WORKSPACE)"/reports'
+      sh 'cd "($WORKSPACE)/reports'
+      junit '*.xml'
       sh 'docker rm -f todo-app || true'
       sh 'docker rm -f temporary-chrome || true'
       sh 'docker rm -f todo-app-e2e || true'
