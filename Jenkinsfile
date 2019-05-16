@@ -6,7 +6,6 @@ pipeline {
     APP_NAME = "todo-app"
     APP_PORT = "8080"
     SUT_URL = "http://${env.APP_NAME}:${APP_PORT}"
-    JUNIT_REPORTS_DIR = ""
   }
   stages {
     stage('Unit tests') {
@@ -39,17 +38,13 @@ pipeline {
         dir("e2e") {
             sh 'docker rm -f todo-app-e2e || true'
             sh 'docker build --no-cache -t todo-app-tests:edge .'
-            sh 'JUNIT_REPORTS_DIR="$(pwd)"/reports'
-            sh 'echo ${JUNIT_REPORTS_DIR}/*.xml'
-            sh 'docker run --name todo-app-e2e --rm --network e2e-network -v ${JUNIT_REPORTS_DIR}/:/e2e/reports/ -e SUT_URL=${SUT_URL} todo-app-tests:edge'
+            sh 'docker run --name todo-app-e2e --rm --network e2e-network -e SUT_URL=${SUT_URL} todo-app-tests:edge'
         }
       }
     }
   }
   post {
     always {
-      sh 'echo ${JUNIT_REPORTS_DIR}/*.xml'
-      junit '${JUNIT_REPORTS_DIR}/*.xml'
       sh 'docker rm -f todo-app || true'
       sh 'docker rm -f temporary-chrome || true'
       sh 'docker rm -f todo-app-e2e || true'

@@ -22,6 +22,8 @@
     "@wdio/sync": "^5.7.13",
     "@wdio/junit-reporter": "^5.0.0",
     "@wdio/allure-reporter": "^5.0.0",
-    "chai": "^4.2.0"
+    "chai": "^4.2.0",
+    "wdio-reportportal-reporter": "^5.0.0",
+    "wdio-reportportal-service": "5.0.0"
   }
 }

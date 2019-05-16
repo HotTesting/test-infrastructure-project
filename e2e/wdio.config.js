@@ -5,6 +5,28 @@ const SELENIUM_PORT = parseInt(process.env.SELENIUM_PORT) || 4444;
 console.log("###### Selenium at", SELENIUM_HOST, SELENIUM_PORT, "will be used");
 console.log("###### Website at", global.SUT_URL, "will be tested");
 
+// Report Portal reporter
+const reportportal = require("wdio-reportportal-reporter");
+const RpService = require("wdio-reportportal-service");
+
+const rpConfig = {
+    reportPortalClientConfig: {
+        token: "46792478-cfaf-4179-b938-873ac4d3a2c2",
+        endpoint: "http://ip-5236.sunline.net.ua:10580/api/v1",
+        launch: `TEST_LAUNCH_${process.env.GIT_COMMIT}`,
+        project: "test-infrastructure-project",
+        mode: "DEFAULT",
+        debug: false,
+        description: `JENKINS URL ${process.env.JOB_URL}`,
+        tags: ["e2e", "wedbdriverio"]
+    },
+    reportSeleniumCommands: false,
+    autoAttachScreenshots: false,
+    seleniumCommandsLogLevel: "debug",
+    screenshotsLogLevel: "info",
+    parseTagsFromTestTitle: false
+};
+
 exports.config = {
     specs: ["./tests/*.js"],
     sync: true,
@@ -18,6 +40,7 @@ exports.config = {
             maxInstances: 1
         }
     ],
+    services: [[RpService, {}]],
     reporters: [
         "spec",
         [
@@ -36,7 +59,8 @@ exports.config = {
                 // disableWebdriverStepsReporting: true,
                 disableWebdriverScreenshotsReporting: true
             }
-        ]
+        ],
+        [reportportal, rpConfig]
     ],
 
     framework: "mocha",
