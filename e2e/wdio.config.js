@@ -1,6 +1,6 @@
 global.SUT_URL = process.env.SUT_URL || "http://todomvc.com/examples/vue/";
 const SELENIUM_HOST = process.env.SELENIUM_HOST || "temporary-chrome";
-const SELENIUM_PORT = process.env.SELENIUM_PORT || 4444;
+const SELENIUM_PORT = parseInt(process.env.SELENIUM_PORT) || 4444;
 
 console.log("###### Selenium at", SELENIUM_HOST, SELENIUM_PORT, "will be used");
 console.log("###### Website at", global.SUT_URL, "will be tested");
