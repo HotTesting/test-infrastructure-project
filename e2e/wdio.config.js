@@ -1,10 +1,15 @@
 global.SUT_URL = process.env.SUT_URL || "http://todomvc.com/examples/vue/";
-console.log("######", global.SUT_URL, "will be used");
+const SELENIUM_HOST = process.env.SELENIUM_HOST || "temporary-chrome";
+const SELENIUM_PORT = process.env.SELENIUM_PORT || 4444;
+
+console.log("###### Selenium at", SELENIUM_HOST, SELENIUM_PORT, "will be used");
+console.log("###### Website at", global.SUT_URL, "will be tested");
 
 exports.config = {
     specs: ["./tests/*.js"],
     sync: true,
-    hostname: "temporary-chrome",
+    hostname: SELENIUM_HOST,
+    port: SELENIUM_PORT,
     maxInstances: 1,
     maxInstancesPerCapability: 1,
     capabilities: [
