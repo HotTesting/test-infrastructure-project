@@ -38,17 +38,14 @@ pipeline {
         dir("e2e") {
             sh 'docker rm -f todo-app-e2e || true'
             sh 'docker build --no-cache -t todo-app-tests:edge .'
-            // -v "$(pwd)"/reports/:/e2e/reports/
-            sh 'docker run --name todo-app-e2e --rm --network e2e-network -e SUT_URL=${SUT_URL} todo-app-tests:edge'
+            sh 'docker run --name todo-app-e2e --rm --network e2e-network -v "$(pwd)"/reports/:/e2e/reports/ -e SUT_URL=${SUT_URL} todo-app-tests:edge'
         }
       }
     }
   }
   post {
     always {
-      // sh 'cd "$(pwd)"/reports/; cp *.xml "$(WORKSPACE)"/reports'
-      // sh 'cd "($WORKSPACE)/reports'
-      // junit '*.xml'
+      junit '"$(pwd)"/e2e/reports/*.xml'
       sh 'docker rm -f todo-app || true'
       sh 'docker rm -f temporary-chrome || true'
       sh 'docker rm -f todo-app-e2e || true'
