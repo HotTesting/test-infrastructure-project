@@ -30,8 +30,7 @@ const rpConfig = {
 exports.config = {
     specs: ["./tests/*.js"],
     sync: true,
-    // hostname: SELENIUM_HOST,
-    hostname: "ip-5236.sunline.net.ua",
+    hostname: SELENIUM_HOST,
     port: SELENIUM_PORT,
     maxInstances: 1,
     maxInstancesPerCapability: 1,
