@@ -23,7 +23,10 @@ exports.config = {
         [
             "junit",
             {
-                outputDir: "./reports/"
+                outputDir: "./reports/",
+                outputFileFormat: function(options) {
+                    return `results-${options.cid}.xml`;
+                }
             }
         ],
         [
