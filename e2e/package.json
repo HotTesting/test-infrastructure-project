@@ -5,7 +5,7 @@
   "scripts": {
     "start-chrome-container": "docker run --rm --name temporary-chrome -d --privileged -p 5000:4444 --shm-size=2g selenium/standalone-chrome:3.141.59",
     "stop-chrome-container": "docker rm -f temporary-chrome || true",
-    "build-tests-container" : "docker build --no-cache -t todo-app-tests:edge .",
+    "build-tests-container": "docker build --no-cache -t todo-app-tests:edge .",
     "start-tests-container": "docker run --name todo-app-e2e --rm --network e2e-network -e SUT_URL=${SUT_URL} todo-app-tests:edge",
     "stop-tests-container": "docker rm -f todo-app-e2e || true",
     "test": "wdio ./wdio.config.js"
@@ -23,7 +23,7 @@
     "@wdio/junit-reporter": "^5.0.0",
     "@wdio/allure-reporter": "^5.0.0",
     "chai": "^4.2.0",
-    "wdio-reportportal-reporter": "^5.0.0",
-    "wdio-reportportal-service": "5.0.0"
+    "wdio-reportportal-reporter": "^5.0.1",
+    "wdio-reportportal-service": "^5.0.0"
   }
 }
