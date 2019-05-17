@@ -2,8 +2,10 @@
     "private": true,
     "scripts": {
         "start": "http-server",
-        "docker-build": "docker build --no-cache -t example:todo-app ./",
-        "docker-run": "docker run --name todo-app --rm -d -p 8080:80 example:todo-app"
+        "build-frontend-container": "docker build --no-cache -t todo-app:edge .",
+        "start-frontend-container": "docker run --rm --name todo-app -d --privileged -p 8080:8080 todo-app:edge",
+        "stop-frontent-container": "docker rm -f todo-app || true"
+
     },
     "dependencies": {
         "director": "^1.2.0",
