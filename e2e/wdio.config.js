@@ -11,7 +11,7 @@ const RpService = require("wdio-reportportal-service");
 
 const rpConfig = {
     reportPortalClientConfig: {
-        token: "46792478-cfaf-4179-b938-873ac4d3a2c2",
+        token: "51e64352-0915-49ef-bee1-069e53a57c5c",
         endpoint: "http://ip-5236.sunline.net.ua:10580/api/v1",
         launch: `TEST_LAUNCH_${process.env.GIT_COMMIT}`,
         project: "test-infrastructure-project",
