@@ -11,7 +11,7 @@ const RpService = require("wdio-reportportal-service");
 
 const rpConfig = {
     reportPortalClientConfig: {
-        // login - test-infrastructure-manager 
+        // login - test-infrastructure-manager
         // password - test-infrastructure
         token: "51e64352-0915-49ef-bee1-069e53a57c5c",
         endpoint: "http://ip-5236.sunline.net.ua:10580/api/v1",
@@ -30,7 +30,7 @@ const rpConfig = {
 };
 
 exports.config = {
-    specs: ["./tests/*.js"],
+    specs: ["./tests/upload_tests.js"],
     sync: true,
     hostname: SELENIUM_HOST,
     port: SELENIUM_PORT,
@@ -39,7 +39,8 @@ exports.config = {
     capabilities: [
         {
             browserName: "chrome",
-            maxInstances: 1
+            version: "73.0",
+            enableVNC: true
         }
     ],
     services: [[RpService, {}]],
