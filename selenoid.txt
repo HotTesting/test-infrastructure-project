@@ -1,0 +1,29 @@
+Graphana
+http://ip-5236.sunline.net.ua:10600/dashboard/db/selenoid-stats?refresh=10s&orgId=1
+
+
+
+docker run -d --name ggr -p 4443:4444 --network selenoid-network -v ~/.aerokube/grid-router:/etc/grid-router:ro aerokube/ggr:latest-release -guests-allowed -guests-quota test
+
+docker run -d --name ggr-ui -p 8888:8888 --network selenoid-network -v ~/.aerokube/grid-router/quota:/etc/grid-router/quota:ro aerokube/ggr-ui:latest-release
+
+docker run -d --name selenoid-ui-ggr -p 8089:8080 --network selenoid-network aerokube/selenoid-ui --selenoid-uri http://ggr-ui:8888
+
+User/password generation
+https://httpd.apache.org/docs/2.4/programs/htpasswd.html
+
+ggr quota
+http://localhost:4443/quota
+
+ggr ui status:
+http://localhost:8888/status
+
+ui for ggr:
+http://localhost:8089/#/
+
+reload
+docker kill -s HUP ggr
+
+
+start selenoid with s3 bucket
+OVERRIDE_VIDEO_OUTPUT_DIR=/Users/oleksandrkhotemskyi/.aerokube/selenoid/video ./selenoid -conf ~/.aerokube/selenoid/browsers.json -video-output-dir ~/.aerokube/selenoid/video/ -log-output-dir ~/.aerokube/selenoid/logs -s3-endpoint http://ip-5236.sunline.net.ua:10200/selenoid -s3-region 'kiev' -s3-access-key 'userr' -s3-secret-key 'passwordd' 

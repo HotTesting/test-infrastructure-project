@@ -30,18 +30,32 @@ const rpConfig = {
 };
 
 exports.config = {
-    specs: ["./tests/upload_tests.js"],
+    specs: ["./tests/*.js"],
     sync: true,
+    //protocol: 'https',
     hostname: SELENIUM_HOST,
     port: SELENIUM_PORT,
-    maxInstances: 1,
-    maxInstancesPerCapability: 1,
+    // user: 'test',
+    // key:  'test-password',
+
+    // address: "http://test:test-password@localhost:4444/wd/hub"
+    maxInstances: 5,
     capabilities: [
         {
             browserName: "chrome",
-            version: "73.0",
-            enableVNC: true
+            // version: '72.0',
+            enableVNC: true,
+            name: "START-IT DEMO",
+            enableVideo: true
         }
+        // {
+        //     maxInstances: 1,
+        //     automationName: "XCUITest",
+        //     platformName: "iOS",
+        //     platformVersion: "11.3",
+        //     browserName: "Safari",
+        //     deviceName: "iPhone X",
+        // }
     ],
     services: [[RpService, {}]],
     reporters: [

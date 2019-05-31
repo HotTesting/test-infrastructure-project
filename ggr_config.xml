@@ -1,0 +1,16 @@
+<qa:browsers xmlns:qa="urn:config.gridrouter.qatools.ru">
+<browser name="chrome" defaultVersion="74.0">
+    <version number="74.0">
+        <region name="1">
+            <host name="ip-5236.sunline.net.ua" port="4444" count="1"/>
+            <host name="browsers.aerokube.com" username="c2473a5f5611f882ce38a7b25f63769a" password="Q_QOQvVwiTmJrnlnBeTqMeIJritYVtQEuB" scheme="https" port="4444" count="1"/>
+            <host name="selenoid" port="4444" count="1"/>
+
+            <host name="192.168.0.214" port="4444" count="1"/>
+            <host name="192.168.0.160" port="4444" count="1"/>
+            <host name="192.168.0.211" port="4444" count="1"/>
+            <host name="159.89.47.75" port="4444" count="1"/>
+        </region>
+    </version>
+</browser>
+</qa:browsers>
